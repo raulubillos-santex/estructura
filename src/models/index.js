@@ -9,85 +9,23 @@ const sequelize = new Sequelize({
     port: process.env.DBPORT
 })
 
-const PokemonModel = sequelize.define('Pokemon', {
+const Profesor = sequelize.define('Profesor', {
     Id: {
-        primaryKey: true,
-        type: DataTypes.UUID
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true
     },
     Name: {
-        type: DataTypes.TEXT
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    Specie: {
-        type: DataTypes.TEXT
-    },
-    Level: {
-        type: DataTypes.INTEGER
-    },
-    Strength: {
-        type: DataTypes.INTEGER
-    },
-    Vitality: {
-        type: DataTypes.INTEGER
-    },
-    Speed: {
-        type: DataTypes.INTEGER
-    },
-    TrainerId: {
-        type: DataTypes.UUID
+    Surname: {
+        type:DataTypes.STRING,
+        allowNull:false
     }
-}, { 
-    tableName: "Pokemon"
 });
-
-const TeamModel = sequelize.define('Team', {
-    Id: {
-        primaryKey: true,
-        type: DataTypes.UUID
-    },
-    Name: {
-        type: DataTypes.TEXT
-    },
-    TrainerId: {
-        type: DataTypes.UUID
-    }
-}, { tableName: "Team" });
-
-PokemonModel.belongsToMany(TeamModel, { through: 'Pokemon_Teams' });
-
-TeamModel.belongsToMany(PokemonModel, { through: 'Pokemon_Teams' });
-
-const TrainerModel = sequelize.define('Trainer', {
-    Id: {
-        primaryKey: true,
-        type: DataTypes.UUID
-    },
-    TrainerId: {
-        type: DataTypes.TEXT
-    },
-    Name: {
-        type: DataTypes.TEXT
-    },
-    Gender: {
-        type: DataTypes.CHAR
-    },
-    Age: {
-        type: DataTypes.INTEGER
-    },
-    Password: {
-        type: DataTypes.TEXT
-    },
-    Region: {
-        type: DataTypes.TEXT
-    }
-}, { tableName: "Trainer" });
-
-PokemonModel.belongsTo(TrainerModel, { foreignKey: 'TrainerId' });
-TeamModel.belongsTo(TrainerModel, { foreignKey: "TrainerId" });
-
 
 module.exports = {
     sequelize,
-    PokemonModel,
-    TrainerModel,
-    TeamModel
+    Profesor
 }
