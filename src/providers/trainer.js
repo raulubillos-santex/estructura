@@ -31,7 +31,7 @@ const deleteTrainerById = async (idTrainer) =>{
                 Id: idTrainer
             }
         });
-        return `${idTrainer}succesfully deleted`;
+        return `Trainer ${idTrainer} succesfully deleted`;
     }catch(err){
         return {
             error: true
