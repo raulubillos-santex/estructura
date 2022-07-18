@@ -1,14 +1,15 @@
 var express = require('express');
 const {deleteProfesorByIdProfesor, getProfesorByIdProfesor, patchProfesorByIdProfesor, postProfesor, putProfesorByIdProfesor} = require('../controllers/profesor');
+const { getTrainerById, putTrainerById, patchTrainerById, deleteTrainerById, postTrainer } = require('../controllers/trainer');
 var router = express.Router();
 
-router.post('/', postProfesor);
+router.post('/', postTrainer);
 
-router.get('/:idProfesor', getProfesorByIdProfesor);
+router.get('/:idTrainer', getTrainerById);
 
-router.put('/:idProfesor', putProfesorByIdProfesor);
+router.put('/:idTrainer', putTrainerById);
 
-router.patch('/:idProfesor', patchProfesorByIdProfesor);
+router.patch('/:idTrainer', patchTrainerById);
 
-router.delete('/:idProfesor', deleteProfesorByIdProfesor);
+router.delete('/:idTrainer', deleteTrainerById);
 module.exports = router;
