@@ -22,6 +22,21 @@ const selectTrainerByPK = async (idTrainer) => {
             error: true
         };
     }
-}
+};
 
-module.exports = {insertTrainer, selectTrainerByPK}
+const deleteTrainerById = async (idTrainer) =>{
+    try{
+        const trainer = await Trainer.detroy({
+            where:{
+                Id: idTrainer
+            }
+        });
+        return `${idTrainer}succesfully deleted`;
+    }catch(err){
+        return {
+            error: true
+        };
+    }
+};
+
+module.exports = {insertTrainer, selectTrainerByPK, deleteTrainerById}
