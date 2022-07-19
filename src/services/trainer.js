@@ -5,7 +5,8 @@ const createTrainer = async (body) => {
     const trainer = {
         Id: v4(),
         Name: body.Name,
-        Surname: body.Surname
+        Surname: body.Surname,
+        Edad: body.Edad
     };
 
     const idCreated = await insertTrainer(trainer);
