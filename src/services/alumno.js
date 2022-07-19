@@ -1,16 +1,16 @@
 const {v4} = require('uuid');
-const {insertTrainer} = require('../providers/trainer');
+const {insertAlumno} = require('../providers/alumno');
 
-const createTrainer = async (body) => {
+const createAlumno = async (body) => {
     console.log(body)
-    const trainer = {
+    const alumno = {
         Id: v4(),
         Name: body.Name,
         Surname: body.Surname,
         Edad: body.Edad
     };
 
-    const idCreated = await insertTrainer(trainer);
+    const idCreated = await insertAlumno(alumno);
 
     if(!idCreated) {
         throw new Error('TRAINER CREATE ERROR');
@@ -19,4 +19,4 @@ const createTrainer = async (body) => {
     return idCreated;
 }
 
-module.exports = {createTrainer}
+module.exports = {createAlumno}

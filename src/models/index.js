@@ -24,7 +24,7 @@ const Profesor = sequelize.define('Profesor', {
         allowNull:false
     }
 });
-const Trainer = sequelize.define('Trainer', {
+const Trainer = sequelize.define('Alumno', {
     Id:  {
         type: DataTypes.UUID,
         allowNull: false,

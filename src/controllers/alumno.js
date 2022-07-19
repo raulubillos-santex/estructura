@@ -1,9 +1,9 @@
-const { createTrainer } = require('../services/trainer');
+const { createAlumno } = require('../services/alumno');
 const { errorCodes } = require('../utils/constant')
 
-const postTrainer = async (req, res, next) => {
+const postAlumno = async (req, res, next) => {
     try{
-        const id = await createTrainer(req.body);
+        const id = await createAlumno(req.body);
         res.status(201).send(id);
         next();
     } catch (err) {
@@ -14,4 +14,4 @@ const postTrainer = async (req, res, next) => {
     next();
 }
 
-module.exports ={postTrainer}
+module.exports ={postAlumno}

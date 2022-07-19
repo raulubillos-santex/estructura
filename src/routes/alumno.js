@@ -1,8 +1,8 @@
 var express = require('express');
-const { postTrainer } = require('../controllers/trainers');
+const { postAlumno } = require('../controllers/alumno');
 
 var route = express.Router();
 
-route.post('/', postTrainer);
+route.post('/', postAlumno);
 
 module.exports = route;
