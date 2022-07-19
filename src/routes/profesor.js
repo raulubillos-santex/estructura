@@ -11,4 +11,5 @@ router.put('/:idProfesor', putProfesorByIdProfesor);
 router.patch('/:idProfesor', patchProfesorByIdProfesor);
 
 router.delete('/:idProfesor', deleteProfesorByIdProfesor);
+
 module.exports = router;

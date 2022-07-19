@@ -37,7 +37,7 @@ const updateAlumnoById = async (id, body) => {
     const updatedAlumno = await updateAlumno(id, body);
     return updatedAlumno;
 }
-const deleteAlumno = async (id) => {
+const deleteAlumnoById = async (id) => {
     console.log(id);
     const deletedAlumno = await deleteAlumno(id);
     if(!deletedAlumno) {
@@ -46,4 +46,4 @@ const deleteAlumno = async (id) => {
     return deletedAlumno;
 }
 
-module.exports = {createAlumno, selectAlumnoById, updateAlumnoById, deleteAlumno}
+module.exports = {createAlumno, selectAlumnoById, updateAlumnoById, deleteAlumnoById}

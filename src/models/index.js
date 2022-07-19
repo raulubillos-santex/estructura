@@ -24,7 +24,7 @@ const Profesor = sequelize.define('Profesor', {
         allowNull:false
     }
 });
-const Trainer = sequelize.define('Alumno', {
+const Alumno = sequelize.define('Alumno', {
     Id:  {
         type: DataTypes.UUID,
         allowNull: false,
@@ -46,5 +46,5 @@ const Trainer = sequelize.define('Alumno', {
 module.exports = {
     sequelize,
     Profesor,
-    Trainer
+    Alumno
 }

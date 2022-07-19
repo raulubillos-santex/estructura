@@ -1,4 +1,4 @@
-const { createAlumno, selectAlumnoById,updateAlumnoById, deleteAlumno } = require('../services/alumno');
+const { createAlumno, selectAlumnoById,updateAlumnoById, deleteAlumnoById } = require('../services/alumno');
 const { errorCodes } = require('../utils/constant')
 
 const postAlumno = async (req, res, next) => {
@@ -8,7 +8,7 @@ const postAlumno = async (req, res, next) => {
         next();
     } catch (err) {
         console.log(err)
-        res.status(422).send(err.message);
+        res.status(405).send(err.message);
         next();
     }
     next();
@@ -20,7 +20,7 @@ const getAlumno = async (req, res, next) => {
         next();
     }catch(err){
         console.log(err)
-        res.status(422).send(err.message);
+        res.status(405).send(err.message);
         next();
     }
     next();
@@ -32,19 +32,19 @@ const putAlumno = async (req, res, next) => {
         next();
     }catch(err){
         console.log(err)
-        res.status(422).send(err.message);
+        res.status(405).send(err.message);
         next();
     }
     next();
 }
 const deleteAlumno = async (req, res, next) => {
     try{
-        const alumno = await deleteAlumno(req.params.id);
+        const alumno = await deleteAlumnoById(req.params.id);
         res.status(201).send(alumno);
         next();
     }catch(err){
         console.log(err)
-        res.status(422).send(err.message);
+        res.status(405).send(err.message);
         next();
     }
     next();
