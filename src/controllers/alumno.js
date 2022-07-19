@@ -1,4 +1,4 @@
-const { createAlumno } = require('../services/alumno');
+const { createAlumno, selectAlumnoById,updateAlumnoById, deleteAlumno } = require('../services/alumno');
 const { errorCodes } = require('../utils/constant')
 
 const postAlumno = async (req, res, next) => {
@@ -13,5 +13,40 @@ const postAlumno = async (req, res, next) => {
     }
     next();
 }
-
-module.exports ={postAlumno}
+const getAlumno = async (req, res, next) => {
+    try{
+        const alumno = await selectAlumnoById(req.params.id);
+        res.status(201).send(alumno);
+        next();
+    }catch(err){
+        console.log(err)
+        res.status(422).send(err.message);
+        next();
+    }
+    next();
+}
+const putAlumno = async (req, res, next) => {
+    try{
+        const alumno = await updateAlumnoById(req.params.id, req.body);
+        res.status(201).send(alumno);
+        next();
+    }catch(err){
+        console.log(err)
+        res.status(422).send(err.message);
+        next();
+    }
+    next();
+}
+const deleteAlumno = async (req, res, next) => {
+    try{
+        const alumno = await deleteAlumno(req.params.id);
+        res.status(201).send(alumno);
+        next();
+    }catch(err){
+        console.log(err)
+        res.status(422).send(err.message);
+        next();
+    }
+    next();
+}
+module.exports ={postAlumno, getAlumno, putAlumno, deleteAlumno}
