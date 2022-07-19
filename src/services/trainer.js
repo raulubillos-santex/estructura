@@ -2,6 +2,7 @@ const {v4} = require('uuid');
 const {insertTrainer, selectTrainerByPK, deleteTrainerById} = require('../providers/trainer');
 
 const createTrainer = async (body) => {
+    console.log(body)
     const trainer = {
         Id: v4(),
         Name: body.Name,

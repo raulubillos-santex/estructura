@@ -43,5 +43,6 @@ const Trainer = sequelize.define('Trainer', {
 
 module.exports = {
     sequelize,
-    Profesor
+    Profesor,
+    Trainer
 }
