@@ -45,7 +45,7 @@ const deleteTrainerById = async (req, res, next) => {
         console.log('Este es el delete');
         await deleteTrainer(idTrainer)
         res.status(200).send(req.params.idTrainer);
-    } catch (e) {
+    } catch (err) {
         res.status(errorCodes[err.message]).send(err.message);
     }
 

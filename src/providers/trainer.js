@@ -26,7 +26,7 @@ const selectTrainerByPK = async (idTrainer) => {
 
 const deleteTrainerById = async (idTrainer) =>{
     try{
-        const trainer = await Trainer.detroy({
+        const trainer = await Trainer.destroy({
             where:{
                 Id: idTrainer
             }
