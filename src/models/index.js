@@ -43,8 +43,27 @@ const Alumno = sequelize.define('Alumno', {
     }
 });
 
+const Colegio 
+= sequelize.define('Colegio', {
+    Id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true
+    },
+    Name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Ciudad: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
+
+
 module.exports = {
     sequelize,
     Profesor,
-    Alumno
+    Alumno,
+    Colegio
 }
