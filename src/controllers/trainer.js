@@ -1,4 +1,4 @@
-const { obtainTrainer, createTrainer, deleteTrainer } = require('../services/trainer');
+const { obtainTrainer, createTrainer, deleteTrainer, patchTrainer, putTrainer } = require('../services/trainer');
 const { errorCodes } = require('../utils/constant')
 
 const postTrainer = async (req, res, next) => {
@@ -29,7 +29,7 @@ const getTrainerById = async (req, res, next) => {
 
 const putTrainerById = async (req, res, next) => {
     try {
-        const id = await createTrainer(req.body);
+        const id = await putTrainer(req.body);
         res.status(201).send(id);
         next();
     } catch (err) {
@@ -41,10 +41,17 @@ const putTrainerById = async (req, res, next) => {
 };
 
 const patchTrainerById = (req, res, next) => {
-    console.log('Este es el patch');
-    res.status(200).send(req.query);
+    try {
+        const id = await patchTrainer(req.body);
+        res.status(201).send(id);
+        next();
+    } catch (err) {
+        console.log(err)
+        res.status(422).send(err.message);
+        next();
+    }
     next();
-}
+};
 
 const deleteTrainerById = async (req, res, next) => {
     const idTrainer = req.params.idTrainer
