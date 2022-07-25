@@ -1,5 +1,19 @@
 const {v4} = require('uuid');
-const {insertTrainer, selectTrainerByPK, deleteTrainerById} = require('../providers/trainer');
+const {insertTrainer, selectTrainerByPK, deleteTrainerById, putTrainerInDB} = require('../providers/trainer');
+
+const obtainTrainer = async (idTrainer) => {
+    const trainer = await selectTrainerByPK(idTrainer);
+
+    if(trainer.error){
+        throw new Error('GENERAL-ERROR');
+    }
+
+    if(!trainer){
+        throw new Error('TRAINER-NOT-FOUND');
+    }
+
+    return trainer;
+};
 
 const createTrainer = async (body) => {
     console.log(body)
@@ -19,19 +33,25 @@ const createTrainer = async (body) => {
     return idCreated;
 }
 
-const obtainTrainer = async (idTrainer) => {
-    const trainer = await selectTrainerByPK(idTrainer);
+const putTrainer = async (id, body) => {
+    //console.log(body)
+    const trainer = {
+        Id: id,
+        Name: body.Name,
+        Surname: body.Surname,
+        Edad: body.Edad
+    };
 
-    if(trainer.error){
-        throw new Error('GENERAL-ERROR');
+    const idCreated = await putTrainerInDB(trainer);
+
+    if(!idCreated) {
+        throw new Error('TRAINER-NOT-CREATED');
     }
 
-    if(!trainer){
-        throw new Error('TRAINER-NOT-FOUND');
-    }
+    return idCreated;
+}
 
-    return trainer;
-};
+
 
 const deleteTrainer = async ( idTrainer) => {
     const trainer = await deleteTrainerById(idTrainer);
@@ -47,4 +67,4 @@ const deleteTrainer = async ( idTrainer) => {
     return trainer;
 };
 
-module.exports = {createTrainer, obtainTrainer, deleteTrainer}
+module.exports = {createTrainer, obtainTrainer, deleteTrainer, putTrainer}

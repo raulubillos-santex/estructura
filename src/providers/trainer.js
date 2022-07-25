@@ -31,7 +31,7 @@ const deleteTrainerById = async (idTrainer) =>{
                 Id: idTrainer
             }
         });
-        return `Trainer ${idTrainer} succesfully deleted`;
+        return `Trainer${idTrainer}succesfully deleted`;
     }catch(err){
         return {
             error: true
@@ -39,4 +39,19 @@ const deleteTrainerById = async (idTrainer) =>{
     }
 };
 
-module.exports = {insertTrainer, selectTrainerByPK, deleteTrainerById}
+const putTrainerInDB = async (idTrainer) =>{
+    console.log(idTrainer)
+try{
+    const newTrainer = await Trainer.update(idTrainer, {
+   where:{ Id : idTrainer.Id},
+    });
+    return newTrainer
+}catch(err){
+    console.log(err)
+    return{
+        error: true
+    }
+}
+};
+
+module.exports = {insertTrainer, selectTrainerByPK, deleteTrainerById, putTrainerInDB}

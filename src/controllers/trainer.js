@@ -29,8 +29,11 @@ const getTrainerById = async (req, res, next) => {
 
 const putTrainerById = async (req, res, next) => {
     try {
-        const id = await putTrainer(req.body);
-        res.status(201).send(id);
+        //console.log(req.body)
+        const id = req.params.idTrainer;
+        const body = req.body
+        const infoTrainer = await putTrainer(id, body);
+        res.status(201).send(infoTrainer);
         next();
     } catch (err) {
         console.log(err)
@@ -40,7 +43,7 @@ const putTrainerById = async (req, res, next) => {
     next();
 };
 
-const patchTrainerById = (req, res, next) => {
+const patchTrainerById = async (req, res, next) => {
     try {
         const id = await patchTrainer(req.body);
         res.status(201).send(id);
