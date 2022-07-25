@@ -1,5 +1,6 @@
 const {v4} = require('uuid');
-const {insertProfesor, selectProfesorByPK} = require('../providers/profesor');
+const {insertProfesor, selectProfesorByPK, updateProfesorById} = require('../providers/profesor');
+const { updateAlumnoById } = require('./alumno');
 
 const createProfesor = async (body) => {
     const profesor = {
@@ -29,6 +30,19 @@ const obtainProfesor = async (idProfesor) => {
     }
 
     return profesor;
+} 
+
+const updateProfesor = async (idProfesor, profesor) => {
+    const profesorUpdated = await updateAlumnoById(idProfesor, profesor);
+
+    if(profesorUpdated.error){
+        throw new Error('GENERAL-ERROR');
+    }
+    if(!profesorUpdated){
+        throw new Error('PROFESOR-NOT-FOUND');
+    }
+    return profesorUpdated;
+
 }
 
-module.exports = {createProfesor, obtainProfesor}
+module.exports = {createProfesor, obtainProfesor, updateProfesor}

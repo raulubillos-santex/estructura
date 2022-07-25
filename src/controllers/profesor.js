@@ -1,5 +1,6 @@
-const {createProfesor, obtainProfesor} = require('../services/profesor');
-const {errorCodes} = require('../utils/constant')
+const {createProfesor, obtainProfesor, updateProfesor} = require('../services/profesor');
+const {errorCodes} = require('../utils/constant');
+const { putAlumno } = require('./alumno');
 
 const postProfesor = async (req,res,next) => {
     try {
@@ -27,29 +28,20 @@ const getProfesorByIdProfesor = async (req,res,next) => {
 
     next();
 }
-
-const putProfesorByIdProfesor = (req,res,next) => {
-    console.log('Este es el put');
-    res.status(200).send(req.query);
-    next();
-}
-
-const patchProfesorByIdProfesor = (req,res,next) => {
-    console.log('Este es el patch');
-    res.status(200).send(req.query);
-    next();
-}
-
-const deleteProfesorByIdProfesor = (req,res,next) => {
-    console.log('Este es el delete');
-    res.status(200).send(req.query);
-    next();
-}
+const putProfesor = async (req,res,next) => {
+    try{
+        const profesor = await updateProfesor(req.params.id, req.body);
+        res.status(201).send(profesor);
+        next();
+    }catch(err){
+        console.log(err)
+        res.status(405).send(err.message);
+        next();
+    }
+    next();}
 
 module.exports= {
     postProfesor, 
-    getProfesorByIdProfesor, 
-    putProfesorByIdProfesor, 
-    patchProfesorByIdProfesor, 
-    deleteProfesorByIdProfesor
+    getProfesorByIdProfesor,
+    putProfesor
 }

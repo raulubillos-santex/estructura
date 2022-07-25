@@ -24,4 +24,19 @@ const selectProfesorByPK = async (idProfesor) => {
     }
 }
 
-module.exports = {insertProfesor, selectProfesorByPK}
+const updateProfesorById = async (idProfesor, profesor) => {
+    try {
+        const profesorUpdated = await Profesor.update(profesor, {
+            where:{
+                Id: idProfesor
+            }
+        });
+        return profesorUpdated;
+    } catch(err){
+        return {
+            error: true
+        }
+    }
+}
+
+module.exports = {insertProfesor, selectProfesorByPK, updateProfesorById}
