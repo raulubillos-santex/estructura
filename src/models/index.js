@@ -61,8 +61,7 @@ const Colegio
 });
 
 
-module.exports = {
-    sequelize,
+module.exports = { sequelize,
     Profesor,
     Alumno,
     Colegio
