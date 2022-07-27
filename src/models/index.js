@@ -1,13 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
-
-const sequelize = new Sequelize({
-    dialect: process.env.DBTYPE || 'mysql',
-    password: process.env.DBPASSWORD,
-    username: process.env.DBUSER,
-    database: process.env.DBSCHEMA,
-    host: process.env.DBHOST,
-    port: process.env.DBPORT
-})
+const {
+      DB_USER, DB_PASSWORD, DB_HOST,
+    } = process.env;
+    
+    const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/santex`)
 
 const Profesor = sequelize.define('Profesor', {
     Id: {
@@ -25,7 +21,28 @@ const Profesor = sequelize.define('Profesor', {
     }
 });
 
+const Trainer = sequelize.define('Trainer', {
+    Id:  {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true
+    },
+    Name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Surname: {
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    Edad:{
+        type: DataTypes.STRING,
+    }
+});
+
+
 module.exports = {
     sequelize,
-    Profesor
+    Profesor,
+    Trainer
 }
