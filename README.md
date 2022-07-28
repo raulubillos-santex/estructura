@@ -18,9 +18,9 @@ npm start
 
 Si entran en http://localhost:4000/ vas a ver una pagina en blanco que dice HOME. significa que la api fue levantada con exito.
 
-# ROUTES
+## ROUTES
 
-La siguente ruta los traera un listado con todas las peliculas que tenemos.
+La siguente ruta nos traera un listado con todas las peliculas que tenemos.
 
 ```
 TYPE GET
@@ -48,14 +48,14 @@ La siguente ruta nos eliminará una pelicula.
 TYPE DELETE
 http://localhost:4000/api/movies
 
-Requiere el nombre de la Pelicula, la cual se la pasaremos mediante la key 'title' usando query params.
+Requiere el nombre de la pelicula, la cual se la pasaremos mediante la key 'title' usando query params.
 
 Ej.:
 http://localhost:4000/api/movies?title=Titanic
 
 ```
 
-La siguente ruta nos actualizara los campos Rating y Year de una pelicula.
+La siguente ruta nos actualizara los campos rating y year de una pelicula.
 
 ```
 TYPE PUT/PATCH
