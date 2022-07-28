@@ -1,13 +1,13 @@
 var dotenv = require('dotenv');
 dotenv.config()
 var http = require('http');
-var { sequelize } = require('./models');
+var { sequelize } = require('./models/movies');
 var app = require('./app');
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**

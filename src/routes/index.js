@@ -1,8 +1,12 @@
 var express = require('express');
-var profesor = require('./profesor');
-
 var router = express.Router();
+const movies = require('./movies');
 
-router.use('/profesors', profesor);
+//Routes
+router.get('/', (req, res) => {
+    res.send("HOME")
+})
+
+router.use(movies);
 
 module.exports = router;
