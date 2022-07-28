@@ -42,6 +42,21 @@ Requiere un obj. json con los siguientes datos:
 }
 ```
 
+La siguente ruta nos actualizara los campos rating y year de una pelicula o creara una pelicula en caso que no existira.
+
+```
+TYPE PUT
+http://localhost:4000/api/movies
+
+Requiere un obj. json con los siguientes datos:
+
+{
+  "title": "string",
+  "year": number,
+  "rating": number (0 al 10)
+}
+```
+
 La siguente ruta nos eliminará una pelicula.
 
 ```
@@ -58,7 +73,7 @@ http://localhost:4000/api/movies?title=Titanic
 La siguente ruta nos actualizara los campos rating y year de una pelicula.
 
 ```
-TYPE PUT/PATCH
+TYPE PATCH
 http://localhost:4000/api/movies
 
 Requiere un obj. json con los siguientes datos:

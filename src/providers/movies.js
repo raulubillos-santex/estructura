@@ -1,4 +1,5 @@
 const { Movies } = require('../models/movies')
+const { v4 } = require('uuid');
 
 const getMovies = async() => {
     const moviesList = await Movies.findAll();
@@ -13,6 +14,42 @@ const createMovie = async (movie) => {
     return true;
 }
 
+const updateOrCreateMovie = async (movie) => {
+    const { title, year, rating } = movie;
+    
+    const findMovie = await Movies.findOne({
+        where: {
+            Title: title
+        }
+    });
+
+    if (findMovie) {
+        findMovie.set({
+            Year: year,
+            Rating: rating
+          });
+        await findMovie.save();
+        return true;
+    }
+    else {
+
+        const newMovie = {
+            Id: v4(),
+            Title: title,
+            Year: year,
+            Rating: rating
+        };
+
+        await Movies.create({
+            ...newMovie
+        }, { isNewRecord: true });
+
+        return false;
+    }
+}
+
+
+//PATCH
 const updateMovie = async (movie) => {
     const { title, year, rating } = movie;
     
@@ -68,6 +105,7 @@ const existMovie = async (movie) => {
 module.exports = {
     getMovies,
     createMovie,
+    updateOrCreateMovie,
     updateMovie,
     deleteMovie,
     existMovie

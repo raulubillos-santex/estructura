@@ -1,4 +1,4 @@
-const { getMovies, createMovie, updateMovie, deleteMovie, existMovie } = require('../providers/movies');
+const { getMovies, createMovie, updateOrCreateMovie, updateMovie, deleteMovie, existMovie } = require('../providers/movies');
 
 const getMoviesService = async () => {
     const list = await getMovies();
@@ -14,6 +14,12 @@ const createMovieService = async (movie) => {
     } else {
         return false
     }
+}
+
+const updateOrCreateMovieService = async (movie) => {
+    const movieValue = await updateOrCreateMovie(movie);
+
+    return movieValue
 }
 
 const updateMovieService = async (movie) => {
@@ -32,6 +38,7 @@ const deleteMovieService = async (movie) => {
 module.exports = {
     getMoviesService,
     createMovieService,
+    updateOrCreateMovieService,
     updateMovieService,
     deleteMovieService,
 }
