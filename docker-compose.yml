@@ -6,7 +6,7 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=pokemon
+      - MYSQL_DATABASE=movies
       - MYSQL_USER=node
       - MYSQL_PASSWORD=nodeapp
       - MYSQL_ROOT_PASSWORD=root
