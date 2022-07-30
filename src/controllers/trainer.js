@@ -53,8 +53,8 @@ const patchTrainerById = async (req,res,next) => {
     const idTrainer = req.params.idTrainer;
 
     try {
-        const message = await updateTrainer(idTrainer, req.body);
-        res.status(200).send(message);
+        const trainer = await updateTrainer(idTrainer, req.body);
+        res.status(200).send(trainer.Id);
         next();
     } catch (err) {
         res.status(404).send(err.message);
@@ -68,7 +68,7 @@ const deleteTrainerById = async (req,res,next) => {
 
     try {
         const trainer = await deleteTrainer(idTrainer);
-        res.status(200).send(trainer.idTrainer);
+        res.status(200).send(trainer.Id);
         next();
     } catch (err) {
         res.status(404).send(err.message);

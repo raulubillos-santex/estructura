@@ -29,19 +29,13 @@ const getTrainer = async (idTrainer) => {
 }
 
 const updateTrainer = async (idTrainer, body) => {
-    const trainer = {
-        Id: idTrainer,
-        Name: body.Name,
-        Surname: body.Surname,
-        League: body.League
-    };
 
-    const message = await updateTrainerDB(trainer);
+    const updated = await updateTrainerDB(idTrainer, body);
 
-    if(!message){
+    if(!updated){
         throw new Error('TRAINER-NOT-FOUND');
     }
-    return message;
+    return updated;
 }
 
 const deleteTrainer = async (idTrainer) => {
