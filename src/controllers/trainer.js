@@ -26,19 +26,30 @@ const getTrainerById = async (req,res,next) => {
     next();
 }
 
-const putTrainerById = (req,res,next) => {
+const putTrainerById = async (req,res,next) => {
     const idTrainer = req.params.idTrainer;
 
     try {
-        const trainer = await getTrainer(idTrainer, req.body);
-        res.status(200).send(trainer);
+        const trainer = await getTrainer(idTrainer);
+        if(trainer){
+            const message = await updateTrainer(idTrainer, req.body);
+            res.status(200).send(message);
+            next();
+        }
+        else{
+            const id = await createTrainer(req.body);
+            res.status(201).send({
+            idTrainer: id
+        });
+        next();
+        }
     } catch (err) {
         res.status(404).send(err.message);
     }
     next();
 }
 
-const patchTrainerById = (req,res,next) => {
+const patchTrainerById = async (req,res,next) => {
     const idTrainer = req.params.idTrainer;
 
     try {
@@ -52,14 +63,12 @@ const patchTrainerById = (req,res,next) => {
     next();
 }
 
-const deleteTrainerById = (req,res,next) => {
+const deleteTrainerById = async (req,res,next) => {
     const idTrainer = req.params.idTrainer;
 
     try {
-        const id = await deleteTrainer(idTrainer);
-        res.status(200).send({
-            idTrainer: id
-        });
+        const trainer = await deleteTrainer(idTrainer);
+        res.status(200).send(trainer.idTrainer);
         next();
     } catch (err) {
         res.status(404).send(err.message);
